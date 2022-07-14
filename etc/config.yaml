@@ -1,0 +1,44 @@
+Server:
+  Name: admin-api
+  Host: 0.0.0.0
+  Port: 10001
+  Env: dev
+
+Dbs:
+  - ConnName: default
+    Host: 192.168.1.82
+    Port: 3306
+    User: hulianpai
+    Pwd: rgn!sRkSldAl3!S8af
+    Database: hp_ims
+    Charset: utf8mb4
+#    Read:
+#      DataSource: hulianpai:rgn!sRkSldAl3!S8af@tcp(192.168.1.82:3306)/hp_ims?charset=utf8mb4&parseTime=True&loc=PRC
+#    Write:
+#      DataSource: hulianpai:rgn!sRkSldAl3!S8af@tcp(192.168.1.82:3306)/hp_ims?charset=utf8mb4&parseTime=True&loc=PRC
+    Prefix:
+    Pool:
+      MaxConn: 10
+      MaxIdle: 3
+
+  - ConnName: User
+    DataSource: hulianpai:rgn!sRkSldAl3!S8af@tcp(192.168.1.82:3306)/hp_user?charset=utf8mb4&parseTime=True&loc=PRC
+
+Redis:
+  Host: 127.0.0.1
+  Port: 6379
+  Pwd:
+  Db: 0
+
+Log:
+  Path: runtime/logs
+  LogSuffix: .log
+  Level: debug
+  TimeFormat: Y-m-d H:i:s
+  # FormatType: json
+  MaxAgeHour: 168
+  RotationTimeHour: 24
+
+Cors:
+  Domain:
+    - '*'
