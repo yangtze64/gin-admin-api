@@ -88,6 +88,8 @@ func presetStruct(val reflect.Value, typ reflect.Type) error {
 						return err
 					}
 					field.SetBool(defaultTagBool)
+				default:
+					return nil
 				}
 				if err := checkStructFieldTag(val, typ, i); err != nil {
 					return err
