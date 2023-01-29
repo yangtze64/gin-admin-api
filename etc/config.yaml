@@ -1,0 +1,30 @@
+Server:
+  Name: gin-admin-api
+  Mode: dev
+  Host: 0.0.0.0
+  Port: 8081
+
+Log:
+  Mode: both
+  Encoding: json
+
+DBs:
+  default:
+    Host: 127.0.0.1
+    Port: 3307
+    User: root
+    Pwd: 123456
+    Database: yangtze-admin
+    # DataSource: root:123456@tcp(127.0.0.1:3307)/yangtze-admin?charset=utf8mb4&parseTime=True&loc=PRC
+    # Write: root:123456@tcp(127.0.0.1:3307)/yangtze-admin?charset=utf8mb4&parseTime=True&loc=PRC
+    # Read:
+      # - root:123456@tcp(127.0.0.1:3307)/yangtze-admin?charset=utf8mb4&parseTime=True&loc=PRC
+      # - root:123456@tcp(127.0.0.1:3307)/yangtze-admin?charset=utf8mb4&parseTime=True&loc=PRC
+    # Prefix:
+    Pool:
+      MaxConn: 10
+      MaxIdle: 3
+
+  # User:
+    # DataSource: hulianpai:rgn!sRkSldAl3!S8af@tcp(192.168.1.82:3306)/hp_user?charset=utf8mb4&parseTime=True&loc=PRC
+
