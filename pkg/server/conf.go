@@ -6,6 +6,7 @@ type (
 		Mode     string `default:"dev"`
 		Host     string `default:"0.0.0.0"`
 		Port     int    `default:"8080"`
+		Pprof    bool   `default:"false"`
 		CertFile string
 		KeyFile  string
 	}

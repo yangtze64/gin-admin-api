@@ -3,6 +3,7 @@ Server:
   Mode: dev
   Host: 0.0.0.0
   Port: 8081
+  Pprof: false
 
 Log:
   Mode: both

@@ -10,6 +10,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
 )
 
@@ -32,6 +33,10 @@ func MustNewServer(c Conf, opts ...RunOption) *Server {
 func NewServer(c Conf, opts ...RunOption) (*Server, error) {
 	addr := fmt.Sprintf("%s:%d", c.Host, c.Port)
 	engine := gin.New()
+	fmt.Println(c)
+	if c.Pprof {
+		pprof.Register(engine)
+	}
 	srv := &http.Server{
 		Addr:    addr,
 		Handler: engine,

@@ -45,7 +45,7 @@ func presetStruct(val reflect.Value, typ reflect.Type) error {
 			tfield := typ.Field(i)
 			requiredTag := tfield.Tag.Get("required")
 			defaultTag, defaultOk := tfield.Tag.Lookup("default")
-			if requiredTag != "" && !defaultOk && requiredTag != "0" && strings.ToLower(requiredTag) != "false" && fv.IsZero() {
+			if fv.IsZero() && requiredTag != "" && !defaultOk && requiredTag != "0" && strings.ToLower(requiredTag) != "false" {
 				return errors.New("preset struct field tag exists `required` but value is zero")
 			}
 			if ft.Kind() == reflect.Struct || ft.Kind() == reflect.Slice || ft.Kind() == reflect.Map {
@@ -83,11 +83,13 @@ func presetStruct(val reflect.Value, typ reflect.Type) error {
 						field.SetFloat(defaultTagFloat64)
 					}
 				case reflect.Bool:
-					defaultTagBool, err := strconv.ParseBool(defaultTag)
-					if err != nil {
-						return err
+					if fv.IsZero() && defaultOk {
+						defaultTagBool, err := strconv.ParseBool(defaultTag)
+						if err != nil {
+							return err
+						}
+						field.SetBool(defaultTagBool)
 					}
-					field.SetBool(defaultTagBool)
 				default:
 					return nil
 				}
