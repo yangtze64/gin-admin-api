@@ -9,5 +9,7 @@ import (
 
 func PassportRouter(r *gin.RouterGroup, serverCtx *svc.ServiceContext) {
 	v1 := r.Group("/v1")
-	v1.POST("/login", passport.LoginHandler(serverCtx))
+	{
+		v1.POST("/signup", passport.SignupHandler(serverCtx))
+	}
 }

@@ -2,7 +2,9 @@ package passport
 
 import (
 	"context"
+	"fmt"
 	"gin-admin-api/internal/svc"
+	"gin-admin-api/internal/types"
 	"gin-admin-api/pkg/logx"
 )
 
@@ -20,6 +22,8 @@ func NewPassportLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Passport
 	}
 }
 
-func (p *PassportLogic) GetMember() {
-	// TODO
+func (p *PassportLogic) Signup(req *types.SignupReq) (resp *types.EmptyResp, err error) {
+	fmt.Println(req)
+	err = nil
+	return
 }
