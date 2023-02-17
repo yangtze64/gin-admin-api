@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"fmt"
+	"gin-admin-api/pkg/utils"
 	"log"
 	"net/http"
 	"os"
@@ -32,6 +33,9 @@ func MustNewServer(c Conf, opts ...RunOption) *Server {
 
 func NewServer(c Conf, opts ...RunOption) (*Server, error) {
 	addr := fmt.Sprintf("%s:%d", c.Host, c.Port)
+	if c.Mode == utils.ProdMode {
+		gin.SetMode(gin.ReleaseMode)
+	}
 	engine := gin.New()
 	fmt.Println(c)
 	if c.Pprof {
