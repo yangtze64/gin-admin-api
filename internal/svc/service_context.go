@@ -7,9 +7,7 @@ import (
 )
 
 type ServiceContext struct {
-	Config config.Config
-	// Db     *gorm.DB
-	// UserDb *gorm.DB
+	Config  config.Config
 	UserDao dao.IUserDao
 }
 
@@ -17,10 +15,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	db.Setup(c.DBs)
 	conn := db.GetConn()
 	return &ServiceContext{
-		Config: c,
-		// Db:     db.GetConn(),
-		// Db:     db.GetConn("default"),
-		// UserDb: db.GetConn("user"),
+		Config:  c,
 		UserDao: dao.User(conn),
 	}
 }

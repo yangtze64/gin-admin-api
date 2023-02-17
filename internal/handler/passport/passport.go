@@ -12,17 +12,14 @@ import (
 
 func SignupHandler(svcCtx *svc.ServiceContext) func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
-		var req types.SignupReq
+		var (
+			req  types.SignupReq
+			resp *types.EmptyResp
+		)
 		if err := shared.ShouldBind(ctx, &req); err != nil {
-			ctx.PureJSON(400, gin.H{
-				"err": err.Error(),
-			})
-			return
+			l := logic.Passport(ctx, svcCtx)
+			resp, err = l.Signup(&req)
+			fmt.Printf("%#+v\n", resp)
 		}
-
-		l := logic.Passport(ctx, svcCtx)
-		resp, err := l.Signup(&req)
-		fmt.Println(resp)
-		fmt.Println(err)
 	}
 }
