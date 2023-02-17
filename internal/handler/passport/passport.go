@@ -3,9 +3,9 @@ package passport
 import (
 	"fmt"
 	"gin-admin-api/internal/logic"
-	"gin-admin-api/internal/shared"
 	"gin-admin-api/internal/svc"
 	"gin-admin-api/internal/types"
+	"gin-admin-api/internal/utils/shared"
 
 	"github.com/gin-gonic/gin"
 )

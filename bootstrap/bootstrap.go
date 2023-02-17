@@ -2,9 +2,9 @@ package bootstrap
 
 import (
 	"flag"
-	"gin-admin-api/internal/global"
 	"gin-admin-api/internal/router"
 	"gin-admin-api/internal/svc"
+	"gin-admin-api/internal/utils/global"
 	"gin-admin-api/pkg/conf"
 	"gin-admin-api/pkg/logx"
 	"gin-admin-api/pkg/server"

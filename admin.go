@@ -1,6 +1,8 @@
 package main
 
-import "gin-admin-api/pkg/bootstrap"
+import (
+	"gin-admin-api/bootstrap"
+)
 
 func main() {
 	bootstrap.Run()
