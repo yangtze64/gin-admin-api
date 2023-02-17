@@ -6,6 +6,7 @@ import (
 	"gin-admin-api/internal/svc"
 	"gin-admin-api/internal/types"
 	"gin-admin-api/internal/utils/shared"
+	"gin-admin-api/pkg/logx"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,6 +17,7 @@ func SignupHandler(svcCtx *svc.ServiceContext) func(ctx *gin.Context) {
 			req  types.SignupReq
 			resp *types.EmptyResp
 		)
+		logx.WithContext(ctx).Info("测试一下")
 		if err := shared.ShouldBind(ctx, &req); err != nil {
 			l := logic.Passport(ctx, svcCtx)
 			resp, err = l.Signup(&req)

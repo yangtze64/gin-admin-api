@@ -61,7 +61,7 @@ func Setup(c Conf, opts ...HookOption) {
 				log.Fatalf("log path create fail: %s, %s", logPath, err.Error())
 			}
 		}
-		opts = append([]HookOption{WithLfsHook}, opts...)
+		opts = append([]HookOption{WithLfsHook, WithGlobalFieldHook}, opts...)
 	}
 
 	level, ok := levelMap[strings.ToLower(c.Level)]
@@ -92,6 +92,20 @@ func WithField(key string, value interface{}) Logger {
 
 func WithFields(fields logrus.Fields) Logger {
 	return log.WithFields(fields)
+}
+
+func AddGlobalField(key string, value interface{}) {
+	globalFields.mut.Lock()
+	defer globalFields.mut.Unlock()
+	globalFields.fields[key] = value
+}
+
+func AddGlobalFields(fields logrus.Fields) {
+	globalFields.mut.Lock()
+	defer globalFields.mut.Unlock()
+	for k, v := range fields {
+		globalFields.fields[k] = v
+	}
 }
 
 func AddHook(hook Hook) {
