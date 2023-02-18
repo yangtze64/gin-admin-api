@@ -17,7 +17,7 @@ func SignupHandler(svcCtx *svc.ServiceContext) func(ctx *gin.Context) {
 			req  types.SignupReq
 			resp *types.EmptyResp
 		)
-		logx.WithContext(ctx).Info("测试一下")
+		logx.WithContext(ctx).WithField("key1", "qwerty").Info("测试一下")
 		if err := shared.ShouldBind(ctx, &req); err != nil {
 			l := logic.Passport(ctx, svcCtx)
 			resp, err = l.Signup(&req)

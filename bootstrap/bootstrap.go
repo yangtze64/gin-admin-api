@@ -8,7 +8,6 @@ import (
 	"gin-admin-api/pkg/conf"
 	"gin-admin-api/pkg/logx"
 	"gin-admin-api/pkg/server"
-	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -23,7 +22,7 @@ func init() {
 	// fmt.Printf("%#+v\n", c)
 	logx.Setup(c.Log)
 	logx.AddGlobalField("ServerName", c.Server.Name)
-	logx.AddGlobalFields(logrus.Fields{"ServerName1": c.Server.Name})
+	// logx.AddGlobalFields(logrus.Fields{"ServerName": c.Server.Name})
 
 	srv = server.MustNewServer(c.Server)
 

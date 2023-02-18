@@ -1,9 +1,10 @@
 package logx
 
 import (
+	"sync"
+
 	"github.com/rifflock/lfshook"
 	"github.com/sirupsen/logrus"
-	"sync"
 )
 
 type (
@@ -18,7 +19,7 @@ var globalFields = newGlobalFieldHook()
 
 func newGlobalFieldHook() *globalFieldsHook {
 	return &globalFieldsHook{
-		fields: make(logrus.Fields, 6),
+		fields: make(logrus.Fields, 3),
 	}
 }
 
@@ -27,11 +28,9 @@ func (g *globalFieldsHook) Levels() []logrus.Level {
 }
 
 func (g *globalFieldsHook) Fire(entry *logrus.Entry) error {
-	data := make(logrus.Fields, len(entry.Data)+len(g.fields))
 	for k, v := range g.fields {
-		data[k] = v
+		entry.Data[k] = v
 	}
-	entry.Data = data
 	return nil
 }
 

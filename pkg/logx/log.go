@@ -61,7 +61,7 @@ func Setup(c Conf, opts ...HookOption) {
 				log.Fatalf("log path create fail: %s, %s", logPath, err.Error())
 			}
 		}
-		opts = append([]HookOption{WithLfsHook, WithGlobalFieldHook}, opts...)
+		opts = append([]HookOption{WithGlobalFieldHook, WithLfsHook}, opts...)
 	}
 
 	level, ok := levelMap[strings.ToLower(c.Level)]
