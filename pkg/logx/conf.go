@@ -13,7 +13,7 @@ type (
 		// 保存天数
 		KeepDays int `range:"0:365"`
 		// daily,level,size 分割方式
-		Rotation string `default:"daily" options:"daily,level,daily-level,size"`
+		Rotation string `default:"daily" options:"daily,level,level-daily,size"`
 		// 轮转时间 单位h
 		RotationTime int
 		// 文件大小进行分割阈值,单位`MB` 只有Rotation包含size时有效

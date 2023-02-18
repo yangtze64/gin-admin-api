@@ -28,7 +28,7 @@ const (
 	LogBothMode               = "both"
 	LogFileRotationDaily      = "daily"
 	LogFileRotationLevel      = "level"
-	LogFileRotationDailyLevel = "daily-level"
+	LogFileRotationDailyLevel = "level-daily"
 	LogFileRotationSize       = "size"
 	LogFileJsonEncoding       = "json"
 )
@@ -129,11 +129,11 @@ func (l *Logx) getFormatter() logrus.Formatter {
 
 func (l *Logx) fileRotate(levelVal string) *rotatelogs.RotateLogs {
 	filePath := l.conf.FilePrefix
-	if l.conf.Rotation == LogFileRotationDaily {
-		filePath += "-%Y-%m-%d"
-	}
 	if l.conf.Rotation == LogFileRotationLevel || l.conf.Rotation == LogFileRotationDailyLevel {
 		filePath += "-" + levelVal
+	}
+	if l.conf.Rotation == LogFileRotationDaily || l.conf.Rotation == LogFileRotationDailyLevel {
+		filePath += "-%Y-%m-%d"
 	}
 	filePath = strings.TrimLeft(filePath, "-") + l.conf.FileSuffix
 	fileFullPath := path.Join(l.conf.Path, filePath)
