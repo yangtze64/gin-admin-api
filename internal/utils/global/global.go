@@ -7,6 +7,10 @@ import (
 
 var C config.Config
 
+func Config() config.Config {
+	return C
+}
+
 func ConfigMap() (map[string]interface{}, error) {
 	var m map[string]interface{}
 	b, err := json.Marshal(&C)
@@ -18,8 +22,4 @@ func ConfigMap() (map[string]interface{}, error) {
 		return nil, err
 	}
 	return m, nil
-}
-
-func Config(key string) interface{} {
-	return nil
 }

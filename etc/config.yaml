@@ -15,7 +15,7 @@ DBs:
     Host: 127.0.0.1
     Port: 3307
     User: root
-    Pwd: 12345678
+    Pwd: 123456
     Database: gin-admin
     # DataSource: root:123456@tcp(127.0.0.1:3307)/gin-admin?charset=utf8mb4&parseTime=True&loc=PRC
     Pool:
