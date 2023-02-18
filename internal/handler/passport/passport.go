@@ -25,3 +25,15 @@ func SignupHandler(svcCtx *svc.ServiceContext) func(ctx *gin.Context) {
 		}
 	}
 }
+
+func LoginHandler(svcCtx *svc.ServiceContext) func(ctx *gin.Context) {
+	return func(ctx *gin.Context) {
+
+	}
+}
+
+func LogoutHandler(svcCtx *svc.ServiceContext) func(ctx *gin.Context) {
+	return func(ctx *gin.Context) {
+
+	}
+}

@@ -37,7 +37,6 @@ func NewServer(c Conf, opts ...RunOption) (*Server, error) {
 		gin.SetMode(gin.ReleaseMode)
 	}
 	engine := gin.New()
-	fmt.Println(c)
 	if c.Pprof {
 		pprof.Register(engine)
 	}
@@ -64,6 +63,8 @@ func (s *Server) Run() {
 }
 
 func (s *Server) Start() {
+	addr := fmt.Sprintf("%s:%d", s.conf.Host, s.conf.Port)
+	log.Println("Server Start Listen:" + addr)
 	// 服务连接
 	if s.conf.CertFile != "" && s.conf.KeyFile != "" {
 		if err := s.srv.ListenAndServeTLS(s.conf.CertFile, s.conf.KeyFile); err != nil && err != http.ErrServerClosed {
