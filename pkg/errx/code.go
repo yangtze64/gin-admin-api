@@ -1,4 +1,4 @@
-package result
+package errx
 
 import "net/http"
 

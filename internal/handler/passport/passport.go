@@ -11,6 +11,7 @@ import (
 
 func SignupHandler(svcCtx *svc.ServiceContext) func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
+		//shared.SuccessJson(ctx, nil)
 		var req types.SignupReq
 		if err := shared.ShouldBind(ctx, &req); err != nil {
 			return

@@ -1,4 +1,4 @@
-package result
+package errx
 
 type (
 	Beaner interface {

@@ -1,13 +1,15 @@
-package result
+package errx
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Err struct {
 	Bean
 }
 
 func (e *Err) Error() string {
-	return fmt.Sprintf("ErrCode:%d,ErrMsg:%s", e.GetCode(), e.GetMsg())
+	return fmt.Sprintf("ErrCode:%d,ErrMsg:%s", e.Code, e.Msg)
 }
 
 func NewErr(code CodeType, msg string, data ...interface{}) *Err {

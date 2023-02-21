@@ -1,26 +1,26 @@
 package shared
 
 import (
-	"gin-admin-api/pkg/utils/result"
+	"gin-admin-api/pkg/errx"
 	"net/http"
 )
 
 const (
-	SignatureError result.CodeType = 200001
+	SignatureError errx.CodeType = 200001
 )
 
 var (
-	codemsg = map[result.CodeType]string{
-		result.OK:                        "success",
-		result.StatusInternalServerError: "Server Error",
+	codemsg = map[errx.CodeType]string{
+		errx.OK:                        "success",
+		errx.StatusInternalServerError: "Server Error",
 
-		result.DBError:       "Database Busy",
-		result.BusinessError: "Operation Exception",
-		SignatureError:       "Signature Error",
+		errx.DBError:       "Database Busy",
+		errx.BusinessError: "Operation Exception",
+		SignatureError:     "Signature Error",
 	}
 )
 
-func GetMessage(code result.CodeType) string {
+func GetMessage(code errx.CodeType) string {
 	if msg, ok := codemsg[code]; ok {
 		return msg
 	}
