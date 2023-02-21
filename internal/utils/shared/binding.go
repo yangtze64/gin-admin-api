@@ -2,6 +2,7 @@ package shared
 
 import (
 	"gin-admin-api/internal/utils/global"
+	"gin-admin-api/pkg/result"
 	"gin-admin-api/pkg/utils"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -10,17 +11,17 @@ import (
 func ShouldBind(ctx *gin.Context, v interface{}) error {
 	if err := utils.SetStructValue(v); err != nil {
 		if global.IsProd() {
-			ctx.PureJSON(http.StatusBadRequest, gin.H{"msg": "参数错误"})
+			result.Error(ctx, "Parameter Error", http.StatusBadRequest)
 		} else {
-			ctx.PureJSON(http.StatusBadRequest, gin.H{"msg": err})
+			result.Error(ctx, err.Error(), http.StatusBadRequest)
 		}
 		return err
 	}
 	if err := ctx.ShouldBind(v); err != nil {
 		if global.IsProd() {
-			ctx.PureJSON(http.StatusBadRequest, gin.H{"msg": "参数校验错误"})
+			result.Error(ctx, "Parameter Check Error", http.StatusBadRequest)
 		} else {
-			ctx.PureJSON(http.StatusBadRequest, gin.H{"msg": err})
+			result.Error(ctx, err.Error(), http.StatusBadRequest)
 		}
 		return err
 	}
