@@ -1,25 +1,22 @@
 package passport
 
 import (
-	"fmt"
 	"gin-admin-api/internal/logic"
 	"gin-admin-api/internal/svc"
 	"gin-admin-api/internal/types"
-	"gin-admin-api/internal/utils/shared"
+	"gin-admin-api/internal/utils/httpx"
 	"github.com/gin-gonic/gin"
 )
 
 func SignupHandler(svcCtx *svc.ServiceContext) func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
-		//shared.SuccessJson(ctx, nil)
 		var req types.SignupReq
-		if err := shared.ShouldBind(ctx, &req); err != nil {
+		if !httpx.BindErrReturnJson(ctx, &req) {
 			return
 		}
 		l := logic.Passport(ctx, svcCtx)
 		resp, err := l.Signup(&req)
-		fmt.Printf("%#+v\n", err)
-		fmt.Printf("%#+v\n", resp)
+		httpx.Json(ctx, resp, err)
 	}
 }
 
