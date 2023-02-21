@@ -2,8 +2,8 @@ package shared
 
 import (
 	"gin-admin-api/internal/utils/global"
-	"gin-admin-api/pkg/result"
 	"gin-admin-api/pkg/utils"
+	"gin-admin-api/pkg/utils/result"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

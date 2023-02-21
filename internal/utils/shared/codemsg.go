@@ -1,7 +1,7 @@
 package shared
 
 import (
-	"gin-admin-api/pkg/result"
+	"gin-admin-api/pkg/utils/result"
 	"net/http"
 )
 
