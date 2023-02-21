@@ -21,4 +21,7 @@ DBs:
     Pool:
       MaxConn: 10
       MaxIdle: 3
+Redis:
+  Host: 127.0.0.1
+  Port: 6379
 
