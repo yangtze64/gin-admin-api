@@ -1,6 +1,8 @@
 package httpx
 
 import (
+	"gin-admin-api/internal/utils/global"
+	"gin-admin-api/internal/utils/logger"
 	"gin-admin-api/internal/utils/shared"
 	"gin-admin-api/pkg/errx"
 	"github.com/gin-gonic/gin"
@@ -48,7 +50,12 @@ func Json(ctx *gin.Context, data interface{}, err error) {
 		if e, ok := causeErr.(errx.Beaner); ok {
 			BeanJson(ctx, e)
 		} else {
-			ErrorJson(ctx, err.Error(), errx.StatusBadRequest)
+			if global.IsProd() {
+				logger.WithContext(ctx).Error(err.Error())
+				ErrorJson(ctx, "", errx.StatusInternalServerError)
+			} else {
+				ErrorJson(ctx, err.Error(), errx.StatusBadRequest)
+			}
 		}
 	}
 }
