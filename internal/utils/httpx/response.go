@@ -1,6 +1,7 @@
 package httpx
 
 import (
+	"gin-admin-api/internal/utils/shared"
 	"gin-admin-api/pkg/errx"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
@@ -9,8 +10,14 @@ import (
 
 func BeanJson(ctx *gin.Context, bean errx.Beaner) {
 	code := bean.GetCode()
-	if http.StatusText(code) == "" {
-		code = http.StatusOK
+	if bean.GetCode() == 0 {
+		code = errx.StatusBadRequest
+		bean.SetCode(code)
+	} else if http.StatusText(code) == "" {
+		code = errx.StatusBadRequest
+	}
+	if bean.GetMsg() == "" {
+		bean.SetMsg(shared.GetMessage(bean.GetCode()))
 	}
 	ctx.PureJSON(code, bean)
 }
@@ -41,7 +48,7 @@ func Json(ctx *gin.Context, data interface{}, err error) {
 		if e, ok := causeErr.(errx.Beaner); ok {
 			BeanJson(ctx, e)
 		} else {
-			ErrorJson(ctx, err.Error(), http.StatusBadRequest)
+			ErrorJson(ctx, err.Error(), errx.StatusBadRequest)
 		}
 	}
 }
