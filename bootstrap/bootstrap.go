@@ -22,7 +22,6 @@ func init() {
 	// fmt.Printf("%#+v\n", c)
 	logx.Setup(c.Log)
 	logx.AddGlobalField("ServerName", c.Server.Name)
-	// logx.AddGlobalFields(logrus.Fields{"ServerName": c.Server.Name})
 
 	srv = server.MustNewServer(c.Server)
 

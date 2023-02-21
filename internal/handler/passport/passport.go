@@ -5,11 +5,13 @@ import (
 	"gin-admin-api/internal/svc"
 	"gin-admin-api/internal/types"
 	"gin-admin-api/internal/utils/httpx"
+	"gin-admin-api/internal/utils/logger"
 	"github.com/gin-gonic/gin"
 )
 
 func SignupHandler(svcCtx *svc.ServiceContext) func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
+		logger.WithContext(ctx).Info("注册")
 		var req types.SignupReq
 		if !httpx.CheckParamsFailRenderJson(ctx, &req) {
 			return

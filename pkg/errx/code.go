@@ -5,7 +5,6 @@ import "net/http"
 type CodeType = int
 
 const (
-	// 常用httpCode
 	OK                        CodeType = http.StatusOK
 	StatusBadRequest          CodeType = http.StatusBadRequest
 	StatusUnauthorized        CodeType = http.StatusUnauthorized
