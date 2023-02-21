@@ -7,7 +7,9 @@ import (
 	"net/http"
 )
 
+// ShouldBind 绑定参数
 func ShouldBind(ctx *gin.Context, v interface{}) error {
+	// 预设default默认值
 	if err := utils.SetStructValue(v); err != nil {
 		return err
 	}
@@ -17,7 +19,8 @@ func ShouldBind(ctx *gin.Context, v interface{}) error {
 	return nil
 }
 
-func BindErrReturnJson(ctx *gin.Context, v interface{}) bool {
+// CheckParamsFailRenderJson 校验参数失败write json 校验通过返回true
+func CheckParamsFailRenderJson(ctx *gin.Context, v interface{}) bool {
 	if err := ShouldBind(ctx, v); err != nil {
 		if global.IsProd() {
 			ErrorJson(ctx, "Parameter Error", http.StatusBadRequest)

@@ -11,7 +11,7 @@ import (
 func SignupHandler(svcCtx *svc.ServiceContext) func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
 		var req types.SignupReq
-		if !httpx.BindErrReturnJson(ctx, &req) {
+		if !httpx.CheckParamsFailRenderJson(ctx, &req) {
 			return
 		}
 		l := logic.Passport(ctx, svcCtx)

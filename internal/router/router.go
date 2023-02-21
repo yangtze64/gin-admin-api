@@ -10,5 +10,7 @@ import (
 func Register(r *gin.Engine, serverCtx *svc.ServiceContext) {
 	r.GET("/", handler.IndexHandler(serverCtx))
 	api := r.Group("/api")
-	PassportRouter(api, serverCtx)
+	{
+		PassportRouter(api, serverCtx)
+	}
 }
